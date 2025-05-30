@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: App",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/ui/app.py",
+      "env": {
+        "OTX_API_KEY": "2f1cd2c8e53a196f14dc54fff08a4839467b8b01aa7343126e19147e9a3f78fe"
+      },
+      "console": "integratedTerminal"
+    }
+  ]
+}

@@ -1,0 +1,203 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Linux CTI Framework - Threats & All Processes</title>
+    <meta http-equiv="refresh" content="10">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            padding: 40px;
+        }
+        h1 {
+            color: #222;
+            margin-bottom: 20px;
+        }
+        h2 {
+            margin-top: 40px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 40px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 12px 15px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .no-threats {
+            padding: 20px;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Linux CTI Framework</h1>
+
+    <h2>🔴 Detected Malicious Events</h2>
+    {% if events and events|length > 0 %}
+        <table>
+            <tr>
+                <th>PID</th>
+                <th>Process Name</th>
+                <th>User</th>
+                <th>Matched IOC</th>
+            </tr>
+            {% for event in events %}
+                <tr>
+                    <td>{{ event['pid'] }}</td>
+                    <td>{{ event['name'] }}</td>
+                    <td>{{ event['username'] }}</td>
+                    <td style="color: red; font-weight: bold;">Yes</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <div class="no-threats">✅ No malicious processes detected.</div>
+    {% endif %}
+
+    <h2>📋 All Running Processes</h2>
+    <table>
+        <tr>
+            <th>PID</th>
+            <th>Process Name</th>
+            <th>User</th>
+        </tr>
+        {% for proc in all_processes %}
+            <tr>
+                <td>{{ proc['pid'] }}</td>
+                <td>{{ proc['name'] }}</td>
+                <td>{{ proc['username'] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>->
+<h2>All Running Processes</h2>
+<table border="1" cellpadding="5" cellspacing="0">
+    <thead>
+        <tr>
+            <th>PID</th>
+            <th>Process Name</th>
+            <th>User</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for proc in all_processes %}
+        <tr>
+            <td>{{ proc.pid }}</td>
+            <td>{{ proc.name }}</td>
+            <td>{{ proc.username }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Linux CTI Framework - Threats & Processes</title>
+    <meta http-equiv="refresh" content="10" />
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f4f7fa;
+            margin: 40px;
+            color: #222;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+            background: white;
+            box-shadow: 0 0 8px rgba(0,0,0,0.1);
+        }
+        th, td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #007acc;
+            color: white;
+        }
+        tbody tr:hover {
+            background-color: #e9f1fb;
+        }
+        .no-events {
+            padding: 15px;
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            font-weight: bold;
+            margin-bottom: 40px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Linux CTI Framework</h1>
+
+    <h2>Detected Malicious Events</h2>
+    {% if events and events|length > 0 %}
+        <table>
+            <thead>
+                <tr>
+                    <th>PID</th>
+                    <th>Process Name</th>
+                    <th>User</th>
+                    <th>IOC Matched</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for event in events %}
+                <tr>
+                    <td>{{ event.pid }}</td>
+                    <td>{{ event.name }}</td>
+                    <td>{{ event.username }}</td>
+                    <td style="color: #d9534f; font-weight: bold;">Yes</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="no-events">✅ No malicious processes detected.</div>
+    {% endif %}
+
+    <h2>All Running Processes</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>PID</th>
+                <th>Process Name</th>
+                <th>User</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for proc in all_processes %}
+            <tr>
+                <td>{{ proc.pid }}</td>
+                <td>{{ proc.name }}</td>
+                <td>{{ proc.username }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
